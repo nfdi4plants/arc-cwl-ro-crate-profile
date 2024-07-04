@@ -22,10 +22,6 @@ flowchart TD
 
 ### Workflow
 
-
-
-### Workflow Invocation
-
 ```json
 { "@context": "https://w3id.org/ro/crate/1.1/context",
   "@graph": [
@@ -123,5 +119,61 @@ flowchart TD
       "@type": "Thing",
       "name": "Tab-separated values"
     }
+}
+```
+
+### Workflow Invocation
+
+```json
+{ "@context": [
+    "https://w3id.org/ro/terms/workflow-run/context"
+  ],
+  "@graph": [
+    {
+        "@id": "#wfrun-1",
+        "@type": "CreateAction",
+        "name": "CWL workflow run 1",
+        "endTime": "",
+        "instrument": {"@id": "workflows/workflow.cwl"},
+        "subjectOf": {"@id": ""},
+        "object": [
+            {"@id": "#1"},
+            {"@id": "#2"}
+        ],
+        "result": [
+            {"@id": "#3"}
+        ]
+    },
+    {
+        "@id": "#1",
+        "@type": "Raw Data File",
+        "description": "Number columns in csv format",
+        "encodingFormat": "text/plain",
+        "name": "intensity_table",
+        "exampleOfWork": {"@id": "#1"}
+    },
+    {
+        "@id": "##2",
+        "@type": "Text",
+        "exampleOfWork": {"@id": "#2"},
+        "name": "file_name",
+        "value": "result.csv"
+    },
+    {
+        "@id": "#3",
+        "@type": "Data",
+        "name": "summed_intensities",
+        "description": "Summed intensity columns",
+        "encodingFormat": "text/plain",
+        "exampleOfWork": {"@id": "#3"}
+    },
+    {
+        "@id": "cwltool",
+        "@type": "CreativeWork",
+        "encodingFormat": "text/html",
+        "datePublished": "",
+        "name": "Workflow Execution Example Workflow"
+    }
+]
 }
 ```
