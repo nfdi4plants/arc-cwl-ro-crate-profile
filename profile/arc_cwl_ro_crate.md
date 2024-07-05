@@ -17,8 +17,15 @@ An example of the original profile can be found [here](https://www.researchobjec
 ### CWL Workflow Run Profile
 
 The CWL Workflow Run Profile extends the [Workflow Run Crate](https://www.researchobject.org/workflow-run-crate/profiles/workflow_run_crate/). It adds additional properties to describe the parameters used in the workflow execution in more detail using the [LabProcess](https://bioschemas.org/types/LabProcess/0.1-DRAFT).
-
+```mermaid
 flowchart TD
+        A["File\nSoftwareSourceCode\nComputationalWorkflow"] -- "input\noutput" --> B["FormalParameter"]
+        A -- "instrument" --> C["CreateAction"]
+        C -- "agent" --> D["Person or Organization"]
+        B -- "exampleOfWork" --> E["File or Property Value"]
+        C -- "object result" --> E
+        H["Lab Process"] -- "about" --> C
+```
 
 
 ## Requirements
