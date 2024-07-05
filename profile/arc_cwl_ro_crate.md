@@ -1,4 +1,4 @@
-# ISA RO-Crate Profile
+# CWL RO-Crate Profile
 
 * Version: 0.1
 * Permalink: 
@@ -6,21 +6,50 @@
   *  - https://orcid.org/
 
 ## Overview
+The ARC CWL RO-Crate profile consists of two basic parts. It is divided in the description of the workflow, that can also be a standalone workflow description, 
+and the workflow invocation. The workflow invocation directly references the workflow description and provides the concrete input and output parameters for the workflow. 
 
-```mermaid
+### CWL Workflow Profile
+
+The CWL Workflow Profile extends the [Bioschemas ComputationalWorkflow Profile](https://bioschemas.org/profiles/ComputationalWorkflow/1.0-RELEASE#nav-description). It adds additional properties to describe the workflow in more detail using the [LabProcess](https://bioschemas.org/types/LabProcess/0.1-DRAFT).
+An example of the original profile can be found [here](https://www.researchobject.org/ro-crate/specification/1.1/workflows.html#complete-workflow-example)
+
+### CWL Workflow Run Profile
+
+The CWL Workflow Run Profile extends the [Workflow Run Crate](https://www.researchobject.org/workflow-run-crate/profiles/workflow_run_crate/). It adds additional properties to describe the parameters used in the workflow execution in more detail using the [LabProcess](https://bioschemas.org/types/LabProcess/0.1-DRAFT).
+
 flowchart TD
 
-```
 
 ## Requirements
 
+### CWL Workflow Profile
+
+The requirements of this profile are those of [Bioschemas ComputationalWorkflow Profile](https://bioschemas.org/profiles/ComputationalWorkflow/1.0-RELEASE#nav-description) 
+plus the ones listed below.
+
+#### ComputationalWorkflow
 | Property | Required | Expected Type | Description |
 |----------|----------|---------------|-------------|
-| | | | |
+|about|SHOULD|[bioSchemas.org/LabProcess](https://bioschemas.org/types/LabProcess/0.1-DRAFT)|The computational processes performed in this workflow|
+
+### CWL Workflow Run Profile
+
+#### CreateAction
+
+The requirements of this profile are those of [Workflow Run Crate](https://www.researchobject.org/workflow-run-crate/profiles/workflow_run_crate/) 
+plus the ones listed below.
+
+| Property | Required | Expected Type | Description |
+|----------|----------|---------------|-------------|
+|about|SHOULD|[bioSchemas.org/LabProcess](https://bioschemas.org/types/LabProcess/0.1-DRAFT)|The computational parameters in this workflow run|
+
 
 ## Example ro-crate-metadata.json
 
-### Workflow
+#TODO Check compatibility of Bioschema WF and WF Run
+
+### CWL Workflow Profile
 
 ```json
 { "@context": "https://w3id.org/ro/crate/1.1/context",
@@ -122,7 +151,7 @@ flowchart TD
 }
 ```
 
-### Workflow Invocation
+### CWL Workflow Run Profile
 
 ```json
 { "@context": [
