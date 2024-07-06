@@ -43,10 +43,10 @@ plus the ones listed below.
 
 ### CWL Workflow Run Profile
 
-#### CreateAction
-
 The requirements of this profile are those of [Workflow Run Crate](https://www.researchobject.org/workflow-run-crate/profiles/workflow_run_crate/) 
 plus the ones listed below.
+
+#### CreateAction
 
 | Property | Required | Expected Type | Description |
 |----------|----------|---------------|-------------|
@@ -222,8 +222,47 @@ plus the ones listed below.
         { "@id": "summed_intensities" }
       ]
       "about": [
-        # TODO add some example metadata
-        # Lab process
+        {
+          "@id": "#Process_script.fsx",
+          "@type": [
+            "Process"
+          ],
+          "name": "script.fsx",
+          "parameterValues": [
+            {
+              "@id": "ARCtrl.Json.PropertyValue+ROCrate+genID@16[ARCtrl.Process.ProcessParameterValue]/{Name = \"Data Transformation\"}Some(Ontology\n  {Name = \"Addition\"; TSR = \"NCIT\"; TAN = \"http://purl.obolibrary.org/obo/NCIT_C64911\"})",
+              "@type": "PropertyValue",
+              "additionalType": "ProcessParameterValue",
+              "category": "Data Transformation",
+              "value": "Addition",
+              "valueCode": "http://purl.obolibrary.org/obo/NCIT_C64911",
+              "@context": {
+                "sdo": "http://schema.org/",
+                "additionalType": "sdo:additionalType",
+                "category": "sdo:name",
+                "categoryCode": "sdo:propertyID",
+                "value": "sdo:value",
+                "valueCode": "sdo:valueReference",
+                "unit": "sdo:unitText",
+                "unitCode": "sdo:unitCode",
+                "comments": "sdo:disambiguatingDescription"
+              }
+            }
+          ],,
+          "@context": {
+            "sdo": "http://schema.org/",
+            "bio": "https://bioschemas.org/",
+            "Process": "bio:LabProcess",
+            "name": "sdo:name",
+            "executesProtocol": "bio:executesLabProtocol",
+            "parameterValues": "bio:parameterValue",
+            "performer": "sdo:agent",
+            "date": "sdo:endTime",
+            "inputs": "sdo:object",
+            "outputs": "sdo:result",
+            "comments": "sdo:disambiguatingDescription"
+          }
+        }
       ]
     },
     {
