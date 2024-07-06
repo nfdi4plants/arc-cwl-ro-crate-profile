@@ -77,20 +77,20 @@ plus the ones listed below.
     {
       "@id": "workflows/workflow.cwl",
       "@type": [ "File", "SoftwareSourceCode", "ComputationalWorkflow" ],
-      "conformsTo": { "@id": "https://bioschemas.org/profiles/ComputationalWorkflow/0.5-DRAFT-2020_07_21/" },
+      "conformsTo": { "@id": "https://bioschemas.org/profiles/ComputationalWorkflow/1.0-RELEASE" },
       "name": "Column Addition",
       "programmingLanguage": [
         { "@id": "#FSharp" },
         { "@id": "https://w3id.org/workflowhub/workflow-ro-crate#cwl" }
       ],
-      "creator": { "@id": "#timo" },
+      "creator": { "@id": "https://orcid.org/0000-0003-3925-6778" },
       "dateCreated": "2024-02-05",
       "input": [
-        { "@id": "#1" },
-        { "@id": "#2" }
+        { "@id": "intensity_table" },
+        { "@id": "file_name" }
       ],
       "output": [
-        { "@id": "#3" }
+        { "@id": "summed_intensities" }
       ]
       "about": [
         # TODO add some example metadata
@@ -98,26 +98,26 @@ plus the ones listed below.
       ]
     },
     {
-      "@id": "#1",
+      "@id": "intensity_table",
       "@type": "FormalParameter",
       "conformsTo": { "@id": "https://bioschemas.org/profiles/FormalParameter/0.1-DRAFT-2020_07_21/" },
       "name": "intensity_table",
       "valueRequired": true,
-      "additionalType": { "@id": "http://edamontology.org/data_2976" },
+      "additionalType": "File",
       "format": { "@id": "http://edamontology.org/format_3752" }
     },
     {
-      "@id": "#2",
+      "@id": "file_name",
       "@type": "FormalParameter",
       "conformsTo": { "@id": "https://bioschemas.org/profiles/FormalParameter/0.1-DRAFT-2020_07_21/" },
       "name": "file_name"
     },
     {
-      "@id": "#3",
+      "@id": "summed_intensities",
       "@type": "FormalParameter",
       "conformsTo": { "@id": "https://bioschemas.org/profiles/FormalParameter/0.1-DRAFT-2020_07_21/" },
       "name": "summed_intensities",
-      "additionalType": { "@id": "http://edamontology.org/data_2976" },
+      "additionalType": "File",
       "encodingFormat": { "@id": "http://edamontology.org/format_3475" }
     },
     {
@@ -141,7 +141,7 @@ plus the ones listed below.
       "version": "6.0"
     },
     {
-      "@id": "#timo",
+      "@id": "https://orcid.org/0000-0003-3925-6778",
       "@type": "Person",
       "name": "Timo Mühlhaus"
     },
@@ -166,6 +166,129 @@ plus the ones listed below.
   ],
   "@graph": [
     {
+      "@type": "CreativeWork",
+      "@id": "ro-crate-metadata.json",
+      "conformsTo": { "@id": "https://w3id.org/ro/crate/1.1" },
+      "about": { "@id": "./" }
+    },
+    {
+      "@id": "./workflows",
+      "@type": "Dataset",
+      "conformsTo": [
+        {"@id": "https://w3id.org/ro/wfrun/process/0.1"},
+        {"@id": "https://w3id.org/ro/wfrun/workflow/0.1"},
+        {"@id": "https://w3id.org/workflowhub/workflow-ro-crate/1.0"}
+      ],
+      "hasPart": [
+        { "@id": "workflows/workflow.cwl" },
+        { "@id": "assays/measurement1/dataset/table.csv" }
+        { "@id": "runs/fsResult1/result.csv" }
+      ],
+      "mainEntity": {"@id": "Galaxy-Workflow-Hello_World.ga"}
+      #TODO Way to reference run instance to correctly fill "mentions" field?
+    },
+    {   "@id": "https://w3id.org/ro/wfrun/process/0.1",
+        "@type": "CreativeWork",
+        "name": "Process Run Crate",
+        "version": "0.1"
+    },
+    {   "@id": "https://w3id.org/ro/wfrun/workflow/0.1",
+        "@type": "CreativeWork",
+        "name": "Workflow Run Crate",
+        "version": "0.1"
+    },
+    {   "@id": "https://w3id.org/workflowhub/workflow-ro-crate/1.0",
+        "@type": "CreativeWork",
+        "name": "Workflow RO-Crate",
+        "version": "1.0"
+    },
+    {
+      "@id": "workflows/workflow.cwl",
+      "@type": [ "File", "SoftwareSourceCode", "ComputationalWorkflow" ],
+      "conformsTo": { "@id": "https://bioschemas.org/profiles/ComputationalWorkflow/1.0-RELEASE" },
+      "name": "Column Addition",
+      "programmingLanguage": [
+        { "@id": "#FSharp" },
+        { "@id": "https://w3id.org/workflowhub/workflow-ro-crate#cwl" }
+      ],
+      "creator": { "@id": "https://orcid.org/0000-0003-3925-6778" },
+      "dateCreated": "2024-02-05",
+      "input": [
+        { "@id": "intensity_table" },
+        { "@id": "file_name" }
+      ],
+      "output": [
+        { "@id": "summed_intensities" }
+      ]
+      "about": [
+        # TODO add some example metadata
+        # Lab process
+      ]
+    },
+    {
+      "@id": "intensity_table",
+      "@type": "FormalParameter",
+      "conformsTo": { "@id": "https://bioschemas.org/profiles/FormalParameter/0.1-DRAFT-2020_07_21/" },
+      "name": "intensity_table",
+      "valueRequired": true,
+      "additionalType": "File",
+      "format": { "@id": "http://edamontology.org/format_3752" },
+      "workExample": {"@id": "assays/measurement1/dataset/table.csv"}
+    },
+    {
+      "@id": "file_name",
+      "@type": "FormalParameter",
+      "additionalType": "Text"
+      "conformsTo": { "@id": "https://bioschemas.org/profiles/FormalParameter/0.1-DRAFT-2020_07_21/" },
+      "name": "file_name",
+      "valueRequired": true,
+      "workExample": {"@id": "file_name_filled"}
+    },
+    {
+      "@id": "summed_intensities",
+      "@type": "FormalParameter",
+      "conformsTo": { "@id": "https://bioschemas.org/profiles/FormalParameter/0.1-DRAFT-2020_07_21/" },
+      "name": "summed_intensities",
+      "additionalType": "File",
+      "encodingFormat": { "@id": "http://edamontology.org/format_3475" },
+      "workExample": {"@id": "runs/fsResult1/result.csv"}
+    },
+    {
+      "@id": "https://w3id.org/workflowhub/workflow-ro-crate#cwl",
+      "@type": "computerlanguage",
+      "name": "common workflow language",
+      "alternatename": "cwl",
+      "identifier": {
+        "@id": "https://w3id.org/cwl/v1.2/"
+      },
+      "url": {
+        "@id": "https://www.commonwl.org/"
+      }
+    },
+    {
+      "@id": "#FSharp",
+      "@type": "ProgrammingLanguage",
+      "name": "F Sharp",
+      "alternateName": "F#",
+      "url": "https://dotnet.microsoft.com/en-us/languages/fsharp",
+      "version": "6.0"
+    },
+    {
+      "@id": "https://orcid.org/0000-0003-3925-6778",
+      "@type": "Person",
+      "name": "Timo Mühlhaus"
+    },
+    {
+      "@id": "http://edamontology.org/format_3752",
+      "@type": "Thing",
+      "name": "Comma-separated values"
+    },
+    {
+      "@id": "http://edamontology.org/format_3475",
+      "@type": "Thing",
+      "name": "Tab-separated values"
+    }
+    {
         "@id": "#wfrun-1",
         "@type": "CreateAction",
         "name": "CWL workflow run 1",
@@ -173,35 +296,35 @@ plus the ones listed below.
         "instrument": {"@id": "workflows/workflow.cwl"},
         "subjectOf": {"@id": ""},
         "object": [
-            {"@id": "#1"},
-            {"@id": "#2"}
+            {"@id": "assays/measurement1/dataset/table.csv"},
+            {"@id": "file_name_filled"}
         ],
         "result": [
-            {"@id": "#3"}
+            {"@id": "runs/fsResult1/result.csv"}
         ]
     },
     {
-        "@id": "#1",
-        "@type": "Raw Data File",
+        "@id": "assays/measurement1/dataset/table.csv",
+        "@type": "File",
         "description": "Number columns in csv format",
         "encodingFormat": "text/plain",
         "name": "intensity_table",
-        "exampleOfWork": {"@id": "#1"}
+        "exampleOfWork": {"@id": "intensity_table"}
     },
     {
-        "@id": "##2",
+        "@id": "#file_name_filled",
         "@type": "Text",
-        "exampleOfWork": {"@id": "#2"},
+        "exampleOfWork": {"@id": "file_name"},
         "name": "file_name",
-        "value": "result.csv"
+        "value": "./result.csv"
     },
     {
-        "@id": "#3",
-        "@type": "Data",
+        "@id": "runs/fsResult1/result.csv",
+        "@type": "File",
         "name": "summed_intensities",
         "description": "Summed intensity columns",
         "encodingFormat": "text/plain",
-        "exampleOfWork": {"@id": "#3"}
+        "exampleOfWork": {"@id": "summed_intensities"}
     },
     {
         "@id": "cwltool",
