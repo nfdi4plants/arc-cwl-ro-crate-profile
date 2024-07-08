@@ -55,8 +55,6 @@ plus the ones listed below.
 
 ## Example ro-crate-metadata.json
 
-#TODO Check compatibility of Bioschema WF and WF Run
-
 ### CWL Workflow Profile
 
 ```json
@@ -144,7 +142,7 @@ plus the ones listed below.
     {
       "@id": "https://orcid.org/0000-0003-3925-6778",
       "@type": "Person",
-      "name": "Timo Mühlhaus"
+      "name": "Timo MÃ¼hlhaus"
     },
     {
       "@id": "http://edamontology.org/format_3752",
@@ -316,7 +314,7 @@ plus the ones listed below.
     {
       "@id": "https://orcid.org/0000-0003-3925-6778",
       "@type": "Person",
-      "name": "Timo Mühlhaus"
+      "name": "Timo MÃ¼hlhaus"
     },
     {
       "@id": "http://edamontology.org/format_3752",
