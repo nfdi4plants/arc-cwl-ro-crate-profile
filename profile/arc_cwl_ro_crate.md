@@ -24,7 +24,7 @@ flowchart TD
         C -- "agent" --> D["Person or Organization"]
         B -- "exampleOfWork" --> E["File or Property Value"]
         C -- "object result" --> E
-        H["Lab Process"] -- "about" --> C
+        C -- "about" --> H["Lab Process"]
 ```
 When adding the workflow run execution context, the "hasPart" field contains all files that are part of the invoced workflow. The "inputs" and "outputs" of the "ComputationalWorkflow" 
 MAY point to the "objects" and "results" of "CreateAction" via "workExample", while the latter point to the former via "exampleOfWork".
