@@ -39,7 +39,7 @@ plus the ones listed below.
 #### ComputationalWorkflow
 | Property | Required | Expected Type | Description |
 |----------|----------|---------------|-------------|
-|about|SHOULD|[bioSchemas.org/LabProcess](https://bioschemas.org/types/LabProcess/0.1-DRAFT)|The computational processes performed in this workflow|
+|about|SHOULD|[schema.org/PropertyValue](https://schema.org/PropertyValue)|The computational processes encoded in this workflow|
 
 ### CWL Workflow Run Profile
 
