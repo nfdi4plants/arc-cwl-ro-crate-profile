@@ -7,16 +7,19 @@
 
 ## Overview
 The ARC CWL RO-Crate profile consists of two basic parts. It is divided in the description of the workflow, that can also be a standalone workflow description, 
-and the workflow invocation. The workflow invocation directly references the workflow description and provides the concrete input and output parameters for the workflow. 
+and the workflow invocation. The workflow invocation directly references the workflow description and provides the concrete input and output parameters for the workflow.
+
+CWL allows the use of [metadata](https://www.commonwl.org/user_guide/topics/metadata-and-authorship.html) describing the workflows. The metadata often contains general information about licensing, authorship and affiliation, but is not limited to that. It is possible to describe the steps described by a workflow, or properties describing the run execution, in more detail. This profile aims to specify where and how the metadata contained within CWL workflow and CWL job files should be stored.
 
 ### CWL Workflow Profile
 
 The CWL Workflow Profile extends the [Bioschemas ComputationalWorkflow Profile](https://bioschemas.org/profiles/ComputationalWorkflow/1.0-RELEASE#nav-description). It adds additional properties to describe the workflow in more detail using the [LabProcess](https://bioschemas.org/types/LabProcess/0.1-DRAFT).
 An example of the original profile can be found [here](https://www.researchobject.org/ro-crate/specification/1.1/workflows.html#complete-workflow-example)
+When compared to processes in a laboratory, a workflow is highly similar to a protocol. Protocols can be described using [PropertyValue](https://schema.org/PropertyValue). Workflow complexity can vary. Workflows executing several tools in succession are common and require more complex annotation. This can be achieved by using lists of property values.
 
 ### CWL Workflow Run Profile
 
-The CWL Workflow Run Profile extends the [Workflow Run Crate](https://www.researchobject.org/workflow-run-crate/profiles/workflow_run_crate/). It adds additional properties to describe the parameters used in the workflow execution in more detail using the [LabProcess](https://bioschemas.org/types/LabProcess/0.1-DRAFT).
+The CWL Workflow Run Profile extends the [Workflow Run Crate](https://www.researchobject.org/workflow-run-crate/profiles/workflow_run_crate/). It adds additional properties to describe the parameters used in the workflow execution in more detail using the [LabProcess](https://bioschemas.org/types/LabProcess/0.1-DRAFT). When staying in the laboratory context, runs can be compared to performing the steps of a protocol. The steps involved in the execution of a protocoll can be described by a LabProcess. It may also contain information about inputs and outputs of the specific step.
 ```mermaid
 flowchart TD
         A["File\nSoftwareSourceCode\nComputationalWorkflow"] -- "input\noutput" --> B["FormalParameter"]
@@ -93,7 +96,7 @@ plus the ones listed below.
       ]
       "about": [
         # TODO add some example metadata
-        # Lab process
+        # PropertyValue
       ]
     },
     {
@@ -220,47 +223,6 @@ plus the ones listed below.
         { "@id": "summed_intensities" }
       ]
       "about": [
-        {
-          "@id": "#Process_script.fsx",
-          "@type": [
-            "Process"
-          ],
-          "name": "script.fsx",
-          "parameterValues": [
-            {
-              "@id": "ARCtrl.Json.PropertyValue+ROCrate+genID@16[ARCtrl.Process.ProcessParameterValue]/{Name = \"Data Transformation\"}Some(Ontology\n  {Name = \"Addition\"; TSR = \"NCIT\"; TAN = \"http://purl.obolibrary.org/obo/NCIT_C64911\"})",
-              "@type": "PropertyValue",
-              "additionalType": "ProcessParameterValue",
-              "category": "Data Transformation",
-              "value": "Addition",
-              "valueCode": "http://purl.obolibrary.org/obo/NCIT_C64911",
-              "@context": {
-                "sdo": "http://schema.org/",
-                "additionalType": "sdo:additionalType",
-                "category": "sdo:name",
-                "categoryCode": "sdo:propertyID",
-                "value": "sdo:value",
-                "valueCode": "sdo:valueReference",
-                "unit": "sdo:unitText",
-                "unitCode": "sdo:unitCode",
-                "comments": "sdo:disambiguatingDescription"
-              }
-            }
-          ],,
-          "@context": {
-            "sdo": "http://schema.org/",
-            "bio": "https://bioschemas.org/",
-            "Process": "bio:LabProcess",
-            "name": "sdo:name",
-            "executesProtocol": "bio:executesLabProtocol",
-            "parameterValues": "bio:parameterValue",
-            "performer": "sdo:agent",
-            "date": "sdo:endTime",
-            "inputs": "sdo:object",
-            "outputs": "sdo:result",
-            "comments": "sdo:disambiguatingDescription"
-          }
-        }
       ]
     },
     {
