@@ -11,15 +11,16 @@ and the workflow invocation. The workflow invocation directly references the wor
 
 CWL allows the use of [metadata](https://www.commonwl.org/user_guide/topics/metadata-and-authorship.html) describing the workflows. The metadata often contains general information about licensing, authorship and affiliation, but is not limited to that. It is possible to describe the steps described by a workflow, or properties describing the run execution, in more detail. This profile aims to specify where and how the metadata contained within CWL workflow and CWL job files should be stored.
 
-### CWL Workflow Profile
+### ARC CWL Workflow Profile
 
-The CWL Workflow Profile extends the [Bioschemas ComputationalWorkflow Profile](https://bioschemas.org/profiles/ComputationalWorkflow/1.0-RELEASE#nav-description). It adds additional properties to describe the workflow in more detail using the [LabProcess](https://bioschemas.org/types/LabProcess/0.1-DRAFT).
-An example of the original profile can be found [here](https://www.researchobject.org/ro-crate/specification/1.1/workflows.html#complete-workflow-example)
-When compared to processes in a laboratory, a workflow is highly similar to a protocol. Protocols can be described using [PropertyValue](https://schema.org/PropertyValue). Workflow complexity can vary. Workflows executing several tools in succession are common and require more complex annotation. This can be achieved by using lists of property values.
+The CWL Workflow Profile extends the [Bioschemas ComputationalWorkflow Profile](https://bioschemas.org/profiles/ComputationalWorkflow/1.0-RELEASE#nav-description). A computational workflow consists of an orchestrated and repeatable pattern of activity enabled by the systematic organization of resources into processes that transform materials, provide services, or process information (source Wikipedia.org). An example of the original profile can be found [here](https://www.researchobject.org/ro-crate/specification/1.1/workflows.html#complete-workflow-example)
+Computational workflows and laboratory workflows show many similarities, they typically only differ in how they are executed. To stay consistent of how processes in the ARC are described, we try to stay consistent with the [ISA RO-Crate Profile](https://github.com/nfdi4plants/isa-ro-crate-profile/blob/main/profile/isa_ro_crate.md#isa-ro-crate-profile). We therefore propose to use a multi type for the workflow profile. The type is therefore extended by [LabProtocol](https://github.com/nfdi4plants/isa-ro-crate-profile/blob/main/profile/isa_ro_crate.md#labprotocol). Protocols can be described using [PropertyValue](https://schema.org/PropertyValue). Workflow complexity can vary. Workflows executing several tools in succession are common and require more complex annotation. This can be achieved by using lists of property values.
 
 ### CWL Workflow Run Profile
 
-The CWL Workflow Run Profile extends the [Workflow Run Crate](https://www.researchobject.org/workflow-run-crate/profiles/workflow_run_crate/). It adds additional properties to describe the parameters used in the workflow execution in more detail using the [LabProcess](https://bioschemas.org/types/LabProcess/0.1-DRAFT). When staying in the laboratory context, runs can be compared to performing the steps of a protocol. The steps involved in the execution of a protocoll can be described by a LabProcess. It may also contain information about inputs and outputs of the specific step.
+The CWL Workflow Run Profile extends the [Workflow Run Crate](https://www.researchobject.org/workflow-run-crate/profiles/workflow_run_crate/). This profile describes the execution of a computational tool that orchestrates other tools, represented as a workflow executed using a Workflow Management System (WMS). The Workflow Run Crate combines [Process Run Crate](https://www.researchobject.org/workflow-run-crate/profiles/process_run_crate/)  and [Workflow RO-Crate](https://about.workflowhub.eu/Workflow-RO-Crate/), requiring a ComputationalWorkflow mainEntity and [CreateAction](https://schema.org/CreateAction) instances corresponding to the execution. Workflows can have multiple input and output parameters, defined optionally as FormalParameter entities and linked to the workflow's inputs and outputs.
+To continue staying consisten with the [ISA RO-Crate Profile](https://github.com/nfdi4plants/isa-ro-crate-profile/blob/main/profile/isa_ro_crate.md#isa-ro-crate-profile), we propose to add the [LabProcess](https://github.com/nfdi4plants/isa-ro-crate-profile/blob/main/profile/isa_ro_crate.md#labprocess) to the type CreateAction of the Process Run Crate within the Workflow Run Crate. This allows the annotation of inputs and outputs with metadata describing the properties of those Datasets and the processes leading from inputs to outputs.
+
 ```mermaid
 flowchart TD
         A["File\nSoftwareSourceCode\nComputationalWorkflow"] -- "input\noutput" --> B["FormalParameter"]
@@ -27,7 +28,6 @@ flowchart TD
         C -- "agent" --> D["Person or Organization"]
         B -- "exampleOfWork" --> E["File or Property Value"]
         C -- "object result" --> E
-        C -- "about" --> H["Lab Process"]
 ```
 When adding the workflow run execution context, the "hasPart" field contains all files that are part of the invoced workflow. The "inputs" and "outputs" of the "ComputationalWorkflow" 
 MAY point to the "objects" and "results" of "CreateAction" via "workExample", while the latter point to the former via "exampleOfWork".
@@ -40,9 +40,10 @@ The requirements of this profile are those of [Bioschemas ComputationalWorkflow 
 plus the ones listed below.
 
 #### ComputationalWorkflow
-| Property | Required | Expected Type | Description |
-|----------|----------|---------------|-------------|
-|about|SHOULD|[schema.org/PropertyValue](https://schema.org/PropertyValue)|The computational processes encoded in this workflow|
+| Property | Required | Expected Type | Description | CD | Controlled Vocabulary|
+|----------|----------|---------------|-------------|----|----------------------|
+|type|MUST|[Text](https://schema.org/Text)|schema.org/Bioschemas class for the resource declared using JSON-LD syntax. For other serialisations please use the appropriate mechanism.
+While it is permissible to provide multiple types, it is preferred to use a single type.| MANY | Schema.org, Bioschemas
 
 ### CWL Workflow Run Profile
 
@@ -172,7 +173,7 @@ plus the ones listed below.
       "@id": "ro-crate-metadata.json",
       "conformsTo": { "@id": "https://w3id.org/ro/crate/1.1" },
       "about": { "@id": "./" }
-    },
+    },-
     {
       "@id": "./workflows",
       "@type": "Dataset",
