@@ -57,7 +57,47 @@ with the modifications listed below.
 |----------|----------|---------------|-------------|
 | @type | MUST | [Text](https://schema.org/Text) | MUST be of type [CreateAction](https://schema.org/CreateAction) and [LabProcess](https://github.com/nfdi4plants/isa-ro-crate-profile/blob/main/profile/isa_ro_crate.md#labprocess)|
 
+## Workflow Run Crate in ARCs
 
+```mermaid
+flowchart TD
+  classDef red fill:#f96,stroke:#333,stroke-width:2px;
+
+  subgraph Workflows
+    direction TB
+    A["Workflow(ComputationalWorkflow, LabProtocol)"]:::red
+    C["Subworkflow/Process A"]
+    D["Subworkflow/Process B"]
+    E["Subworkflow/Process AA"]
+    F["Subworkflow/Process AB"]
+    G["Subworkflow/Process AC"]
+  end
+
+  subgraph Runs
+    direction TB
+    B["Run(CreateAction, LabProcess)"]:::red
+    H["Run A"]
+    I["Run B"]
+    J["Run AA"]
+    K["Run AB"]
+    L["Run AC"]
+  end
+
+  A -- "hasPart" --> C
+  A -- "hasPart" --> D
+  C -- "hasPart" --> E
+  C -- "hasPart" --> F
+  C -- "hasPart" --> G
+
+  B -- "instrument" --> A
+  H -- "instrument" --> C
+  I -- "instrument" --> D
+  J -- "instrument" --> E
+  K -- "instrument" --> F
+  L -- "instrument" --> G
+```
+
+Theoretically, an workflow can be broken down in subworkflows and subprocesses. To reduce complexity, it is recommended to use top level description (marked red). One workflow describes the transformation of one set of input data to result data. If a second workflow is applied on the result data, it can be described in a second Workflow Run Crate. If a workflow consists of several steps, forwarding the resulting data to the next step without returning them as a final result, it is described as one Workflow Run Crate. Every ARC Run consists of one or more Workflow Runs (and is therefore comparable to an [Assay](https://github.com/nfdi4plants/isa-ro-crate-profile/blob/main/profile/isa_ro_crate.md#assay).
 
 ## Example ro-crate-metadata.json
 
