@@ -32,32 +32,31 @@ flowchart TD
         D["Assay=Dataset"] -- "processSequence" --> C
         D -- "hasPart" --> E
 ```
-When adding the workflow run execution context, the "hasPart" field contains all files that are part of the invoced workflow. The "inputs" and "outputs" of the "ComputationalWorkflow" 
-MAY point to the "objects" and "results" of "CreateAction" via "workExample", while the latter point to the former via "exampleOfWork".
+The "inputs" and "outputs" of the "ComputationalWorkflow" MAY point to the "objects" and "results" of "CreateAction" via "workExample", while the latter point to the former via "exampleOfWork".
 
 ## Requirements
 
 ### CWL Workflow Profile
 
 The requirements of this profile are those of [Bioschemas ComputationalWorkflow Profile](https://bioschemas.org/profiles/ComputationalWorkflow/1.0-RELEASE#nav-description) 
-plus the ones listed below.
+with the modifications listed below.
 
 #### ComputationalWorkflow
 | Property | Required | Expected Type | Description | CD | Controlled Vocabulary|
 |----------|----------|---------------|-------------|----|----------------------|
-|type|MUST|[Text](https://schema.org/Text)|schema.org/Bioschemas class for the resource declared using JSON-LD syntax. For other serialisations please use the appropriate mechanism.
-While it is permissible to provide multiple types, it is preferred to use a single type.| MANY | Schema.org, Bioschemas
+| @type | MUST | [Text](https://schema.org/Text) | MUST be of type [File](https://schema.org/MediaObject), [SoftwareSourceCode](https://schema.org/SoftwareSourceCode), [ComputationalWorkflow](https://bioschemas.org/profiles/ComputationalWorkflow/1.0-RELEASE) and [LabProtocol](https://github.com/nfdi4plants/isa-ro-crate-profile/blob/main/profile/isa_ro_crate.md#labprotocol)| MANY | Schema.org, Bioschemas
 
 ### CWL Workflow Run Profile
 
 The requirements of this profile are those of [Workflow Run Crate](https://www.researchobject.org/workflow-run-crate/profiles/workflow_run_crate/) 
-plus the ones listed below.
+with the modifications listed below.
 
-#### CreateAction
+#### Process Run Crate
 
 | Property | Required | Expected Type | Description |
 |----------|----------|---------------|-------------|
-|about|SHOULD|[bioSchemas.org/LabProcess](https://bioschemas.org/types/LabProcess/0.1-DRAFT)|The computational parameters in this workflow run|
+| @type | MUST | [Text](https://schema.org/Text) | MUST be of type [CreateAction](https://schema.org/CreateAction) and [LabProcess](https://github.com/nfdi4plants/isa-ro-crate-profile/blob/main/profile/isa_ro_crate.md#labprocess)| MANY | Schema.org, Bioschemas
+
 
 
 ## Example ro-crate-metadata.json
