@@ -24,7 +24,7 @@ To continue staying consisten with the [ISA RO-Crate Profile](https://github.com
 ```mermaid
 flowchart TD
         A["File\nSoftwareSourceCode\nComputationalWorkflow\nLabProtocol"] -- "input\noutput" --> B["FormalParameter"]
-        A -- "instrument" --> C["CreateAction\nLabProcess"]
+        C["CreateAction\nLabProcess"] -- "instrument" --> A
         C -- "executes" --> A
         C -- "agent" --> D["Person or Organization"]
         B -- "exampleOfWork" --> E["File or Property Value"]
