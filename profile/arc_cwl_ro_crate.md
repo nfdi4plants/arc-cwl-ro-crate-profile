@@ -42,9 +42,9 @@ The requirements of this profile are those of [Bioschemas ComputationalWorkflow 
 with the modifications listed below.
 
 #### ComputationalWorkflow
-| Property | Required | Expected Type | Description | CD | Controlled Vocabulary|
-|----------|----------|---------------|-------------|----|----------------------|
-| @type | MUST | [Text](https://schema.org/Text) | MUST be of type [File](https://schema.org/MediaObject), [SoftwareSourceCode](https://schema.org/SoftwareSourceCode), [ComputationalWorkflow](https://bioschemas.org/profiles/ComputationalWorkflow/1.0-RELEASE) and [LabProtocol](https://github.com/nfdi4plants/isa-ro-crate-profile/blob/main/profile/isa_ro_crate.md#labprotocol)| MANY | Schema.org, Bioschemas
+| Property | Required | Expected Type | Description |
+|----------|----------|---------------|-------------|
+| @type | MUST | [Text](https://schema.org/Text) | MUST be of type [File](https://schema.org/MediaObject), [SoftwareSourceCode](https://schema.org/SoftwareSourceCode), [ComputationalWorkflow](https://bioschemas.org/profiles/ComputationalWorkflow/1.0-RELEASE) and [LabProtocol](https://github.com/nfdi4plants/isa-ro-crate-profile/blob/main/profile/isa_ro_crate.md#labprotocol)|
 
 ### CWL Workflow Run Profile
 
@@ -55,7 +55,7 @@ with the modifications listed below.
 
 | Property | Required | Expected Type | Description |
 |----------|----------|---------------|-------------|
-| @type | MUST | [Text](https://schema.org/Text) | MUST be of type [CreateAction](https://schema.org/CreateAction) and [LabProcess](https://github.com/nfdi4plants/isa-ro-crate-profile/blob/main/profile/isa_ro_crate.md#labprocess)| MANY | Schema.org, Bioschemas
+| @type | MUST | [Text](https://schema.org/Text) | MUST be of type [CreateAction](https://schema.org/CreateAction) and [LabProcess](https://github.com/nfdi4plants/isa-ro-crate-profile/blob/main/profile/isa_ro_crate.md#labprocess)|
 
 
 
