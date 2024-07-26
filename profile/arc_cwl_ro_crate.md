@@ -29,7 +29,7 @@ flowchart TD
         C -- "agent" --> D["Person or Organization"]
         B -- "exampleOfWork" --> E["File or Property Value"]
         C -- "object result" --> E
-        D["Assay=Dataset"] -- "processSequence=about" --> C
+        D["Run=Dataset"] -- "processSequence=about" --> C
         D -- "hasPart" --> E
 ```
 The `inputs` and `outputs` of the `ComputationalWorkflow` MAY point to the `objects` and `results` of `CreateAction` via `workExample`, while the latter point to the former via `exampleOfWork`.
