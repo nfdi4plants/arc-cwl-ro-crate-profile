@@ -23,13 +23,13 @@ To continue staying consisten with the [ISA RO-Crate Profile](https://github.com
 
 ```mermaid
 flowchart TD
-        A["File\nSoftwareSourceCode\nComputationalWorkflow\nLabProtocol"] -- "input\noutput" --> B["FormalParameter"]
-        C["CreateAction\nLabProcess"] -- "instrument" --> A
+        A["File,\nSoftwareSourceCode,\nComputationalWorkflow,\nLabProtocol"] -- "input\noutput" --> B["FormalParameter"]
+        C["CreateAction,\nLabProcess"] -- "instrument" --> A
         C -- "executes" --> A
         C -- "agent" --> D["Person or Organization"]
         B -- "exampleOfWork" --> E["File or Property Value"]
         C -- "object result" --> E
-        D["Assay=Dataset"] -- "processSequence" --> C
+        D["Assay=Dataset"] -- "processSequence=about" --> C
         D -- "hasPart" --> E
 ```
 The "inputs" and "outputs" of the "ComputationalWorkflow" MAY point to the "objects" and "results" of "CreateAction" via "workExample", while the latter point to the former via "exampleOfWork".
