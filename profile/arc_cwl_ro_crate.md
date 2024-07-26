@@ -32,7 +32,7 @@ flowchart TD
         D["Assay=Dataset"] -- "processSequence=about" --> C
         D -- "hasPart" --> E
 ```
-The "inputs" and "outputs" of the "ComputationalWorkflow" MAY point to the "objects" and "results" of "CreateAction" via "workExample", while the latter point to the former via "exampleOfWork".
+The `inputs` and `outputs` of the `ComputationalWorkflow` MAY point to the `objects` and `results` of `CreateAction` via `workExample`, while the latter point to the former via `exampleOfWork`.
 
 ## Requirements
 
