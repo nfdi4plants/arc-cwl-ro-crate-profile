@@ -27,7 +27,7 @@ To continue staying consistent with the [ISA RO-Crate Profile](https://github.co
 flowchart TD
         A["File,\nSoftwareSourceCode,\nComputationalWorkflow,\nLabProtocol"] -- "input\noutput" --> B["FormalParameter"]
         C["CreateAction,\nLabProcess"] -- "instrument" --> A
-        C -- "executes" --> A
+        C -- "executesLabProtocol" --> A
         C -- "agent" --> D["Person or Organization"]
         B -- "exampleOfWork" --> E["File or Property Value"]
         C -- "object result" --> E
@@ -59,7 +59,7 @@ with the modifications listed below.
 |----------|----------|---------------|-------------|
 | @type | MUST | [Text](https://schema.org/Text) | MUST be of type [CreateAction](https://schema.org/CreateAction) and [LabProcess](https://github.com/nfdi4plants/isa-ro-crate-profile/blob/main/profile/isa_ro_crate.md#labprocess)|
 
-## Workflow Run Crate in ARCs
+## Example Workflow Run Crate configuration in ARCs
 
 ```mermaid
 flowchart TD
@@ -99,7 +99,7 @@ flowchart TD
   L -- "instrument" --> G
 ```
 
-Theoretically, an workflow can be broken down in subworkflows and subprocesses. To reduce complexity, it is recommended to use top level description (marked red). One workflow describes the transformation of one set of input data to result data. If a second workflow is applied on the result data, it can be described in a second Workflow Run Crate. If a workflow consists of several steps, forwarding the resulting data to the next step without returning them as a final result, it is described as one Workflow Run Crate. Every ARC Run consists of one or more Workflow Runs (and is therefore comparable to an [Assay](https://github.com/nfdi4plants/isa-ro-crate-profile/blob/main/profile/isa_ro_crate.md#assay).
+Each `run` in an ARC is described by one or more Workflow Run Crates. Theoretically, an workflow can be broken down in subworkflows and subprocesses. To reduce complexity, it is recommended to use top level description (marked red). One workflow describes the transformation of one set of input data to result data. If a second workflow is applied on the result data, it can be described in a second Workflow Run Crate. If a workflow consists of several steps, forwarding the resulting data to the next step without returning them as a final result, it is described as one Workflow Run Crate. Every ARC Run consists of one or more Workflow Runs (and is therefore comparable to an [Assay](https://github.com/nfdi4plants/isa-ro-crate-profile/blob/main/profile/isa_ro_crate.md#assay).
 
 ## Example ro-crate-metadata.json
 
